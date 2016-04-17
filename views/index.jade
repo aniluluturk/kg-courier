@@ -19,11 +19,11 @@ html
             span enable-debug:
             input(type="checkbox",ng-model="showdebug")
         p List of Couriers:
-        select#title.form-control(ng-model='newClient',ng-options="courier.name for courier in myWelcome",ng-change="getemptymap(newClient.lastLocation, newClient.name)")
+        select#title.form-control(ng-model='currentCourier',ng-options="courier.name for courier in courierStore",ng-change="getemptymap(currentCourier.lastLocation, currentCourier.name)")
         
-        button(ng-click='getemptymap(newClient.lastLocation, newClient.name)') Refresh
+        button(ng-click='getemptymap(currentCourier.lastLocation, currentCourier.name)') Refresh
         p
-            div(ng-show="showdebug") selected: {{newClient}}
+            div(ng-show="showdebug") selected: {{currentCourier}}
         p
             div(ng-show="showdebug") Data received: {{debug}}
         button(ng-click='showRoute()') Fetch all

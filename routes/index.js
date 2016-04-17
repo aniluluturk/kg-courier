@@ -42,19 +42,15 @@ router.get('/', function(req, res, next) {
 	couriers = [];
 	res.render('index', { title: 'courier tracker' });
   
-	var fluffy = new Courier({ name: 'roshan', lastLocation: {lat:10,lng:10} });
-	fluffy.getLastLocation(); // "Meow name is fluffy"
-
-  
-	Courier.find(function (err, kittens) {
+	Courier.find(function (err, courierData) {
 		if (err) return console.error(err);
-		console.log(kittens +  ".." + JSON.stringify(kittens));
-		console.log(kittens.length);
+		console.log(courierData +  ".." + JSON.stringify(courierData));
+		console.log(courierData.length);
 		arr = [];
-		for (var i = 0;i<kittens.length;i++){
-			console.log(kittens[i].name + " " + kittens[i].lastLocation);
-			arr.push(kittens[i].lastLocation);
-			couriers.push(kittens[i]);
+		for (var i = 0;i<courierData.length;i++){
+			console.log(courierData[i].name + " " + courierData[i].lastLocation);
+			arr.push(courierData[i].lastLocation);
+			couriers.push(courierData[i]);
       		}
 
 		coordinates = arr[0];
@@ -120,14 +116,14 @@ router.get('/coordinates', function(req, res, next) {
   
 	console.log("!!cid:" + req.query.cid);
 	Route.find({$query: { '_courierId': req.query.cid, createdAt: { $gte: today.toISOString(), $lt: tomorrow.toISOString() }}, 
-			$orderby: { createdAt: 1 } },function (err, kittens) {
+			$orderby: { createdAt: 1 } },function (err, routes) {
 		if (err) return console.error(err);
-		console.log(kittens +  ".." + JSON.stringify(kittens));
-		console.log(kittens.length);
+		console.log(routes +  ".." + JSON.stringify(routes));
+		console.log(routes.length);
 		arr = [];
-		for (var i = 0;i<kittens.length;i++){
- 			console.log(kittens[i]._id + " " + kittens[i].lastLocation);
-			arr.push(kittens[i].lastLocation);
+		for (var i = 0;i<routes.length;i++){
+ 			console.log(routes[i]._id + " " + routes[i].lastLocation);
+			arr.push(routes[i].lastLocation);
 		}
 
        		coordinates = arr;

@@ -5,8 +5,8 @@ app.controller('myCtrl', function($scope, $http) {
 	$scope.loadvis = false;
 	$scope.showdebug = false;
 	$scope.debug = "";
-	$scope.newClient = {};
-	$scope.myWelcome = "";
+	$scope.currentCourier = {};
+	$scope.courierStore = "";
 	$scope.warning = "";
 	$scope.getemptymap = function(markerpos,name) {
 		if(markerpos == undefined || markerpos == null)
@@ -18,11 +18,11 @@ app.controller('myCtrl', function($scope, $http) {
 
 	$scope.showRoute = function() {
 		$scope.loadvis = true;
-		//console.log("courier: " + $scope.newClient);
-		//alert($scope.newClient._id);
-		//showRoute($scope.newClient._id);
+		//console.log("courier: " + $scope.currentCourier);
+		//alert($scope.currentCourier._id);
+		//showRoute($scope.currentCourier._id);
 
-		$http.get("/coordinates?cid=" + $scope.newClient._id)
+		$http.get("/coordinates?cid=" + $scope.currentCourier._id)
 		.then(function(response) {
 			console.log("ANGDATA: " + response.data);
 			//alert(JSON.stringify(response.data) );
@@ -34,7 +34,7 @@ app.controller('myCtrl', function($scope, $http) {
 				$scope.warning ="";
 			$scope.loadvis = false;
 			$scope.debug = response.data;
-			//$scope.myWelcome = response.data;
+			//$scope.courierStore = response.data;
 		});
 		
  	};
@@ -54,10 +54,10 @@ app.controller('myCtrl', function($scope, $http) {
 		.then(function(response) {
 			console.log("ANGDATA: " + response.data);
 			//alert(JSON.stringify(response.data) );
-			$scope.myWelcome = response.data;
+			$scope.courierStore = response.data;
 			$scope.debug = response.data;
-			$scope.newClient = $scope.myWelcome[0];
-			getemptymap($scope.newClient.lastLocation,$scope.newClient.name);
+			$scope.currentCourier = $scope.courierStore[0];
+			getemptymap($scope.currentCourier.lastLocation,$scope.currentCourier.name);
 			if(response.data == undefined || response.data == null)
 				$scope.warning ="No data point exists!";
 			else
