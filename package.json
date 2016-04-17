@@ -1,0 +1,16 @@
+{
+  "name": "kg-courier",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "nodejs server.js"
+  },
+  "dependencies": {
+    "debug": "~0.7.4",
+    "express": "~4.0.0",
+    "jade": "*",
+    "moment": "~2.12.0",
+    "mongoose": "~4.4.12",
+    "body-parser": "~1.15.0"
+  }
+}
