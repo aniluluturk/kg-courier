@@ -1,6 +1,6 @@
 # kg-courier
 
-a mock-up courier tracking (path/stop and route display) application, previously prepared for an interview.
+a mock-up courier tracking (path/stop and route display) application, previously prepared for a coding interview.
 
 uses: nodejs, angularjs, jade and available mongodb connection in localhost.
 
